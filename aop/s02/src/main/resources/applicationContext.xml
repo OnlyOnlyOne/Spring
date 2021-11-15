@@ -18,5 +18,12 @@
         <property name="employeeDao" ref="employeeDao"/>
     </bean>
 
+     <bean id="methodChecker" class="com.imooc.spring.aop.aspect.MethodChecker"></bean>
 
+    <aop:config>
+        <aop:pointcut id="pointcut" expression="execution(* com.imooc..*.*(..))"/>
+        <aop:aspect ref="methodChecker">
+            <aop:around method="check" pointcut-ref="pointcut"></aop:around>
+        </aop:aspect>
+    </aop:config>
 </beans>
